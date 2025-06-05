@@ -1,0 +1,533 @@
+<!--
+  Ignacio Silva – Curriculum Vitae / ChatGPT‑style
+  Clean ChatGPT-styled resume with language toggle and rounded sections.
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ignacio Silva · CV</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+      :root{
+        --sidebar-bg: #f7f7f8;
+        --sidebar-border: #e5e5e5;
+        --sidebar-fg: #374151;
+        --sidebar-hover: #f1f1f1;
+        --sidebar-active: #e5e5e5;
+        --bg: #ffffff;
+        --content-bg: #f9f9f9;
+        --text: #374151;
+        --text-muted: #6b7280;
+        --link: #10a37f;
+        --border: #e5e5e5;
+      }
+      
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 18px;
+        line-height: 1.6;
+        background: var(--bg);
+        color: var(--text);
+      }
+      
+      body {
+        display: flex;
+        min-height: 100vh;
+        background: var(--bg);
+      }
+
+      /* ChatGPT-styled Sidebar */
+      .sidebar {
+        background: var(--sidebar-bg);
+        color: var(--sidebar-fg);
+        width: 280px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 12px;
+        border-right: 1px solid var(--sidebar-border);
+        overflow-y: auto;
+        z-index: 1000;
+      }
+      
+      .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 16px;
+        margin-bottom: 12px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: var(--sidebar-hover);
+      }
+      
+      .sidebar a {
+        display: flex;
+        align-items: center;
+        color: inherit;
+        text-decoration: none;
+        font-size: 15px;
+        padding: 14px 16px;
+        border-radius: 12px;
+        transition: background 0.15s ease;
+        margin-bottom: 6px;
+      }
+      
+      .sidebar a:hover {
+        background: var(--sidebar-hover);
+      }
+
+      .language-toggle {
+        margin-top: auto;
+        padding-top: 16px;
+      }
+
+      .language-button {
+        width: 100%;
+        background: var(--link);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 12px 16px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background 0.15s ease;
+        font-family: inherit;
+      }
+
+      .language-button:hover {
+        background: #0d8c6b;
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: 280px;
+        width: calc(100% - 280px);
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 24px;
+      }
+
+      .content-wrapper {
+        max-width: 900px;
+        width: 100%;
+      }
+
+      /* Header Section */
+      .header {
+        background: var(--bg);
+        text-align: center;
+        padding: 48px 32px;
+        margin-bottom: 24px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      
+      .header h1 {
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: var(--text);
+      }
+      
+      .header .subtitle {
+        font-size: 18px;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+      }
+      
+      .header .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+      
+      .header .contact-links a {
+        color: var(--link);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+      }
+      
+      .header .contact-links a:hover {
+        text-decoration: underline;
+      }
+
+      /* Content Sections */
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .section {
+        padding: 32px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: var(--bg);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .section h2 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--text);
+      }
+      
+      .section p {
+        margin-bottom: 18px;
+        color: var(--text);
+        font-size: 17px;
+        line-height: 1.7;
+      }
+      
+      .section ul {
+        margin-left: 24px;
+        margin-bottom: 18px;
+      }
+      
+      .section li {
+        margin-bottom: 14px;
+        color: var(--text);
+        line-height: 1.6;
+        font-size: 17px;
+      }
+      
+      .section strong {
+        font-weight: 600;
+        color: var(--text);
+      }
+      
+      .section a {
+        color: var(--link);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      
+      .section a:hover {
+        text-decoration: underline;
+      }
+
+      .job-entry {
+        margin-bottom: 28px;
+        padding: 24px;
+        background: var(--content-bg);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .job-entry:last-child {
+        margin-bottom: 0;
+      }
+
+      .job-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+
+      .job-company {
+        font-size: 17px;
+        color: var(--text-muted);
+        margin-bottom: 16px;
+        font-weight: 500;
+      }
+
+      .tech-category {
+        margin-bottom: 24px;
+        padding: 20px;
+        background: var(--content-bg);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .tech-category:last-child {
+        margin-bottom: 0;
+      }
+
+      .tech-title {
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 12px;
+        font-size: 18px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        html {
+          font-size: 16px;
+        }
+
+        .sidebar {
+          display: none;
+        }
+        
+        .main-content {
+          margin-left: 0;
+          width: 100%;
+          padding: 16px;
+        }
+
+        .section {
+          padding: 24px 20px;
+        }
+        
+        .header {
+          padding: 32px 20px;
+        }
+        
+        .header h1 {
+          font-size: 28px;
+        }
+        
+        .header .contact-links {
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .job-entry, .tech-category {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="sidebar" aria-label="Navegación">
+      <div class="sidebar-header">
+        Ignacio Silva
+      </div>
+      <a href="#perfil">Perfil</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#educacion">Educación</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#contacto">Contacto</a>
+      
+      <div class="language-toggle">
+        <button class="language-button" onclick="toggleLanguage()">
+          <span class="lang-es hidden">Switch to English</span>
+          <span class="lang-en">Cambiar a Español</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="main-content">
+      <div class="content-wrapper">
+        <header class="header">
+          <h1>Ignacio Silva</h1>
+          <p class="subtitle">
+            <span class="lang-es hidden">Ingeniero de Software · Buenos Aires, Argentina</span>
+            <span class="lang-en">Software Engineer · Buenos Aires, Argentina</span>
+          </p>
+          <div class="contact-links">
+            <a href="mailto:ignaciosilvafernandez@gmail.com">ignaciosilvafernandez@gmail.com</a>
+            <a href="https://github.com/nacho-silva">GitHub</a>
+            <a href="https://www.linkedin.com/in/ignaciosilvafern%C3%A1ndez/">LinkedIn</a>
+          </div>
+        </header>
+
+        <div class="content">
+          <section class="section" id="perfil">
+            <h2>
+              <span class="lang-es hidden">Perfil Profesional</span>
+              <span class="lang-en">Professional Profile</span>
+            </h2>
+            <div class="lang-es hidden">
+              <p>Ingeniero de Software con más de 5 años de experiencia especializado en sistemas distribuidos, tecnología blockchain y desarrollo backend con .NET.</p>
+              <p>Mi carrera se ha enfocado en la construcción de sistemas escalables y robustos, con particular expertise en arquitecturas de microservicios y tecnologías de blockchain. He trabajado en proyectos que van desde aplicaciones empresariales hasta plataformas descentralizadas innovadoras.</p>
+              <p>Me apasiona resolver problemas complejos y crear soluciones técnicas elegantes que generen valor real para los usuarios y las organizaciones.</p>
+            </div>
+            <div class="lang-en">
+              <p>Software Engineer with over 5 years of experience specialized in distributed systems, blockchain technology, and .NET backend development.</p>
+              <p>My career has focused on building scalable and robust systems, with particular expertise in microservices architectures and blockchain technologies. I have worked on projects ranging from enterprise applications to innovative decentralized platforms.</p>
+              <p>I am passionate about solving complex problems and creating elegant technical solutions that generate real value for users and organizations.</p>
+            </div>
+          </section>
+
+          <section class="section" id="experiencia">
+            <h2>
+              <span class="lang-es hidden">Experiencia Profesional</span>
+              <span class="lang-en">Professional Experience</span>
+            </h2>
+            
+            <div class="job-entry">
+              <div class="job-title">
+                <span class="lang-es hidden">Senior Software Engineer</span>
+                <span class="lang-en">Senior Software Engineer</span>
+              </div>
+              <div class="job-company"><strong>Noves</strong> · 2023-<span class="lang-es hidden">presente</span><span class="lang-en">present</span></div>
+              <ul class="lang-es hidden">
+                <li>Desarrollo de sistemas de análisis blockchain y herramientas de infraestructura</li>
+                <li>Arquitectura de microservicios para procesamiento de datos distribuidos</li>
+                <li>Optimización de performance en sistemas de alto volumen de transacciones</li>
+                <li>Liderazgo técnico en proyectos de integración con múltiples blockchains</li>
+              </ul>
+              <ul class="lang-en">
+                <li>Development of blockchain analysis systems and infrastructure tools</li>
+                <li>Microservices architecture for distributed data processing</li>
+                <li>Performance optimization in high-volume transaction systems</li>
+                <li>Technical leadership in multi-blockchain integration projects</li>
+              </ul>
+            </div>
+            
+            <div class="job-entry">
+              <div class="job-title">
+                <span class="lang-es hidden">Software Engineer</span>
+                <span class="lang-en">Software Engineer</span>
+              </div>
+              <div class="job-company"><strong>Globant</strong> · 2020-2023</div>
+              <ul class="lang-es hidden">
+                <li>Desarrollo de aplicaciones enterprise usando .NET Core y C#</li>
+                <li>Implementación de APIs RESTful y servicios web escalables</li>
+                <li>Colaboración en equipos ágiles multidisciplinarios</li>
+                <li>Mentorship de desarrolladores junior y code reviews</li>
+              </ul>
+              <ul class="lang-en">
+                <li>Enterprise application development using .NET Core and C#</li>
+                <li>Implementation of RESTful APIs and scalable web services</li>
+                <li>Collaboration in multidisciplinary agile teams</li>
+                <li>Mentorship of junior developers and code reviews</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="section" id="educacion">
+            <h2>
+              <span class="lang-es hidden">Formación Académica</span>
+              <span class="lang-en">Academic Background</span>
+            </h2>
+            <div class="job-entry">
+              <div class="job-title">
+                <span class="lang-es hidden">Licenciatura en Ciencias de la Computación</span>
+                <span class="lang-en">Bachelor's Degree in Computer Science</span>
+              </div>
+              <div class="job-company"><strong>Universidad de Buenos Aires (UBA)</strong> · 2020</div>
+              <ul class="lang-es hidden">
+                <li>Especialización en algoritmos, estructuras de datos y sistemas distribuidos</li>
+                <li>Tesis enfocada en optimización de sistemas concurrentes</li>
+              </ul>
+              <ul class="lang-en">
+                <li>Specialization in algorithms, data structures, and distributed systems</li>
+                <li>Thesis focused on concurrent systems optimization</li>
+              </ul>
+            </div>
+            <p class="lang-es hidden">Durante mis estudios, desarrollé una sólida base teórica en ciencias de la computación que complementa perfectamente mi experiencia práctica en la industria.</p>
+            <p class="lang-en">During my studies, I developed a solid theoretical foundation in computer science that perfectly complements my practical experience in the industry.</p>
+          </section>
+
+          <section class="section" id="habilidades">
+            <h2>
+              <span class="lang-es hidden">Stack Tecnológico</span>
+              <span class="lang-en">Technology Stack</span>
+            </h2>
+            
+            <div class="tech-category">
+              <div class="tech-title">
+                <span class="lang-es hidden">Lenguajes de Programación</span>
+                <span class="lang-en">Programming Languages</span>
+              </div>
+              <ul class="lang-es hidden">
+                <li><strong>C# / .NET</strong> — Desarrollo backend enterprise, APIs, microservicios</li>
+                <li><strong>Rust</strong> — Sistemas de alta performance, programación de sistemas</li>
+                <li><strong>Golang</strong> — Servicios distribuidos, herramientas CLI</li>
+              </ul>
+              <ul class="lang-en">
+                <li><strong>C# / .NET</strong> — Enterprise backend development, APIs, microservices</li>
+                <li><strong>Rust</strong> — High-performance systems, systems programming</li>
+                <li><strong>Golang</strong> — Distributed services, CLI tools</li>
+              </ul>
+            </div>
+            
+            <div class="tech-category">
+              <div class="tech-title">
+                <span class="lang-es hidden">Infraestructura y Herramientas</span>
+                <span class="lang-en">Infrastructure and Tools</span>
+              </div>
+              <ul class="lang-es hidden">
+                <li><strong>Azure</strong> — Cloud computing, servicios PaaS/SaaS</li>
+                <li><strong>Kubernetes</strong> — Orquestación de contenedores</li>
+                <li><strong>PostgreSQL</strong> — Bases de datos relacionales, optimización de queries</li>
+              </ul>
+              <ul class="lang-en">
+                <li><strong>Azure</strong> — Cloud computing, PaaS/SaaS services</li>
+                <li><strong>Kubernetes</strong> — Container orchestration</li>
+                <li><strong>PostgreSQL</strong> — Relational databases, query optimization</li>
+              </ul>
+            </div>
+            
+            <div class="tech-category">
+              <div class="tech-title">
+                <span class="lang-es hidden">Blockchain y Web3</span>
+                <span class="lang-en">Blockchain and Web3</span>
+              </div>
+              <ul class="lang-es hidden">
+                <li><strong>Solidity</strong> — Smart contracts en Ethereum</li>
+                <li><strong>Substrate</strong> — Desarrollo de blockchains personalizadas</li>
+                <li><strong>Cosmos SDK</strong> — Aplicaciones blockchain interoperables</li>
+              </ul>
+              <ul class="lang-en">
+                <li><strong>Solidity</strong> — Ethereum smart contracts</li>
+                <li><strong>Substrate</strong> — Custom blockchain development</li>
+                <li><strong>Cosmos SDK</strong> — Interoperable blockchain applications</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="section" id="contacto">
+            <h2>
+              <span class="lang-es hidden">Información de Contacto</span>
+              <span class="lang-en">Contact Information</span>
+            </h2>
+            <p class="lang-es hidden">Me encantaría conocer más sobre oportunidades interesantes. Puedes contactarme a través de:</p>
+            <p class="lang-en">I would love to learn more about interesting opportunities. You can contact me through:</p>
+            <ul>
+              <li><strong>Email:</strong> <a href="mailto:ignaciosilvafernandez@gmail.com">ignaciosilvafernandez@gmail.com</a></li>
+              <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ignaciosilvafern%C3%A1ndez/">linkedin.com/in/ignaciosilvafernández</a></li>
+              <li><strong>GitHub:</strong> <a href="https://github.com/nacho-silva">github.com/nacho-silva</a></li>
+            </ul>
+            <p class="lang-es hidden">Estoy siempre abierto a discutir proyectos desafiantes, especialmente aquellos que involucren tecnologías emergentes, sistemas distribuidos o blockchain.</p>
+            <p class="lang-en">I am always open to discussing challenging projects, especially those involving emerging technologies, distributed systems, or blockchain.</p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function toggleLanguage() {
+        const esElements = document.querySelectorAll('.lang-es');
+        const enElements = document.querySelectorAll('.lang-en');
+        
+        esElements.forEach(el => el.classList.toggle('hidden'));
+        enElements.forEach(el => el.classList.toggle('hidden'));
+        
+        // Update page language attribute
+        const isSpanish = !document.querySelector('.lang-es').classList.contains('hidden');
+        document.documentElement.lang = isSpanish ? 'es' : 'en';
+      }
+    </script>
+  </body>
+</html>
